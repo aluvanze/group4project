@@ -1,0 +1,33 @@
+[
+  {
+    "username": "manager1",
+    "password": "1234",
+    "role": "manager"
+  },
+  
+  {
+    "username": "chesinenlinet@gmail.com",
+    "password": "343455",
+    "role": "personnel"
+  },
+  {
+    "username": "lchesinen@usiu.ac.ke",
+    "password": "778899",
+    "role": "manager"
+  },
+  {
+    "username": "tuwa@gmail.com",
+    "password": "mimi",
+    "role": "manager"
+  },
+  {
+    "username": "punton@gmail.com",
+    "password": "papa",
+    "role": "personnel"
+  },
+  {
+    "username": "mary@gmail.com",
+    "password": "mama",
+    "role": "personnel"
+  }
+]

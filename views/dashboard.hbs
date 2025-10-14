@@ -1,0 +1,34 @@
+<h2>Welcome, {{user.username}} (Manager)</h2>
+
+<form action="/manager/assign" method="POST" class="mb-4">
+  <div class="mb-3">
+    <label>Description</label>
+    <input type="text" name="description" class="form-control" required>
+  </div>
+  <div class="mb-3">
+    <label>Assign to</label>
+    <select name="assignedTo" class="form-control" required>
+      {{#each personnel}}
+      <option value="{{this.username}}">{{this.username}}</option>
+      {{/each}}
+    </select>
+  </div>
+  <button class="btn btn-success">Assign Delivery</button>
+</form>
+
+<h4>All Deliveries</h4>
+<table class="table table-bordered">
+  <thead>
+    <tr><th>ID</th><th>Description</th><th>Assigned To</th><th>Status</th></tr>
+  </thead>
+  <tbody>
+    {{#each deliveries}}
+    <tr>
+      <td>{{id}}</td>
+      <td>{{description}}</td>
+      <td>{{assignedTo}}</td>
+      <td>{{status}}</td>
+    </tr>
+    {{/each}}
+  </tbody>
+</table>

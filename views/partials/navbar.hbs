@@ -1,0 +1,15 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/">🚚 DeliveryApp</a>
+    <div class="collapse navbar-collapse">
+      <ul class="navbar-nav ms-auto">
+        {{#if user}}
+          <li class="nav-item"><a class="nav-link" href="/logout">Logout</a></li>
+        {{else}}
+          <li class="nav-item"><a class="nav-link" href="/login">Login</a></li>
+          <li class="nav-item"><a class="nav-link" href="/register">Create Account</a></li>
+        {{/if}}
+      </ul>
+    </div>
+  </div>
+</nav>
