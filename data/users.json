@@ -4,7 +4,6 @@
     "password": "1234",
     "role": "manager"
   },
-  
   {
     "username": "chesinenlinet@gmail.com",
     "password": "343455",
@@ -28,6 +27,21 @@
   {
     "username": "mary@gmail.com",
     "password": "mama",
+    "role": "personnel"
+  },
+  {
+    "username": "jacob",
+    "password": "123456.ab",
+    "role": "manager"
+  },
+  {
+    "username": "aluvanze",
+    "password": "123456.ab",
+    "role": "manager"
+  },
+  {
+    "username": "aluvanze1",
+    "password": "123456.ab",
     "role": "personnel"
   }
 ]

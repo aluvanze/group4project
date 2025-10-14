@@ -36,8 +36,12 @@ router.post("/update/:id", (req, res) => {
 
   const deliveries = getDeliveries();
   const delivery = deliveries.find((d) => d.id == id);
-  if (delivery) delivery.status = status;
-  saveDeliveries(deliveries);
+  
+  if (delivery) {
+    delivery.status = status;
+    saveDeliveries(deliveries);
+  }
+  
   res.redirect("/personnel/dashboard");
 });
 

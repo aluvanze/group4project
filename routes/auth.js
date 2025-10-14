@@ -7,6 +7,11 @@ const path = require("path");
 
 const usersPath = path.join(__dirname, "../data/users.json");
 
+// Home route - redirect to login
+router.get("/", (req, res) => {
+  res.redirect("/login");
+});
+
 // Load users
 function getUsers() {
   if (!fs.existsSync(usersPath)) return [];
