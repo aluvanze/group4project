@@ -1,25 +1,25 @@
-<h2>Welcome, {{user.username}} (Manager)</h2>
+<h2><i class="bi bi-person-badge"></i> Welcome, {{user.username}} (Manager)</h2>
 
 <form action="/manager/assign" method="POST" class="mb-4">
   <div class="mb-3">
-    <label>Description</label>
+    <label><i class="bi bi-card-text"></i> Description</label>
     <input type="text" name="description" class="form-control" required>
   </div>
   <div class="mb-3">
-    <label>Assign to</label>
+    <label><i class="bi bi-person-plus"></i> Assign to</label>
     <select name="assignedTo" class="form-control" required>
       {{#each personnel}}
       <option value="{{this.username}}">{{this.username}}</option>
       {{/each}}
     </select>
   </div>
-  <button class="btn btn-success">Assign Delivery</button>
+  <button class="btn btn-success"><i class="bi bi-plus-circle"></i> Assign Delivery</button>
 </form>
 
-<h4>All Deliveries</h4>
+<h4><i class="bi bi-list-ul"></i> All Deliveries</h4>
 <table class="table table-bordered">
   <thead>
-    <tr><th>ID</th><th>Description</th><th>Assigned To</th><th>Status</th></tr>
+    <tr><th><i class="bi bi-hash"></i> ID</th><th><i class="bi bi-card-text"></i> Description</th><th><i class="bi bi-person"></i> Assigned To</th><th><i class="bi bi-flag"></i> Status</th></tr>
   </thead>
   <tbody>
     {{#each deliveries}}
