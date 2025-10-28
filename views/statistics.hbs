@@ -1,0 +1,217 @@
+<div class="dashboard-header">
+  <h2><i class="bi bi-bar-chart"></i> Statistics & Analytics</h2>
+  <div class="quick-links">
+    <a href="/manager/dashboard" class="btn btn-secondary"><i class="bi bi-arrow-left"></i> Back to Dashboard</a>
+    <a href="/manager/users" class="btn btn-primary"><i class="bi bi-people"></i> Manage Users</a>
+  </div>
+</div>
+
+<div class="stats-cards">
+  <div class="stat-card">
+    <div class="stat-icon bg-primary"><i class="bi bi-box-seam"></i></div>
+    <div class="stat-info">
+      <h3>{{stats.totalDeliveries}}</h3>
+      <p>Total Deliveries</p>
+    </div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-icon bg-warning"><i class="bi bi-clock"></i></div>
+    <div class="stat-info">
+      <h3>{{stats.pending}}</h3>
+      <p>Pending</p>
+    </div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-icon bg-info"><i class="bi bi-hourglass-split"></i></div>
+    <div class="stat-info">
+      <h3>{{stats.inProgress}}</h3>
+      <p>In Progress</p>
+    </div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-icon bg-success"><i class="bi bi-check-circle"></i></div>
+    <div class="stat-info">
+      <h3>{{stats.delivered}}</h3>
+      <p>Delivered</p>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-6 mb-4">
+    <div class="card">
+      <div class="card-header">
+        <h5><i class="bi bi-pie-chart"></i> Delivery Status Distribution</h5>
+      </div>
+      <div class="card-body">
+        <div class="chart-container">
+          <div class="progress-chart">
+            <div class="progress-item">
+              <div class="progress-label">
+                <span>Pending</span>
+                <strong>{{stats.pending}}</strong>
+              </div>
+              <div class="progress">
+                <div class="progress-bar bg-warning" style="width: {{#if stats.totalDeliveries}}{{multiply (divide stats.pending stats.totalDeliveries) 100}}{{else}}0{{/if}}%"></div>
+              </div>
+            </div>
+            <div class="progress-item">
+              <div class="progress-label">
+                <span>In Progress</span>
+                <strong>{{stats.inProgress}}</strong>
+              </div>
+              <div class="progress">
+                <div class="progress-bar bg-info" style="width: {{#if stats.totalDeliveries}}{{multiply (divide stats.inProgress stats.totalDeliveries) 100}}{{else}}0{{/if}}%"></div>
+              </div>
+            </div>
+            <div class="progress-item">
+              <div class="progress-label">
+                <span>Delivered</span>
+                <strong>{{stats.delivered}}</strong>
+              </div>
+              <div class="progress">
+                <div class="progress-bar bg-success" style="width: {{#if stats.totalDeliveries}}{{multiply (divide stats.delivered stats.totalDeliveries) 100}}{{else}}0{{/if}}%"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-6 mb-4">
+    <div class="card">
+      <div class="card-header">
+        <h5><i class="bi bi-people"></i> User Statistics</h5>
+      </div>
+      <div class="card-body">
+        <div class="user-stats">
+          <div class="stat-row">
+            <div class="stat-label">
+              <i class="bi bi-person-badge text-primary"></i>
+              <span>Total Managers</span>
+            </div>
+            <div class="stat-value">{{stats.totalManagers}}</div>
+          </div>
+          <div class="stat-row">
+            <div class="stat-label">
+              <i class="bi bi-truck text-success"></i>
+              <span>Total Personnel</span>
+            </div>
+            <div class="stat-value">{{stats.totalPersonnel}}</div>
+          </div>
+          <div class="stat-row">
+            <div class="stat-label">
+              <i class="bi bi-people text-info"></i>
+              <span>Total Users</span>
+            </div>
+            <div class="stat-value">{{#with (add stats.totalManagers stats.totalPersonnel)}}{{this}}{{/with}}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-12 mb-4">
+    <div class="card">
+      <div class="card-header">
+        <h5><i class="bi bi-graph-up"></i> Personnel Performance</h5>
+      </div>
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th><i class="bi bi-person"></i> Personnel</th>
+                <th><i class="bi bi-box-seam"></i> Total Deliveries</th>
+                <th><i class="bi bi-check-circle text-success"></i> Delivered</th>
+                <th><i class="bi bi-hourglass-split text-info"></i> In Progress</th>
+                <th><i class="bi bi-clock text-warning"></i> Pending</th>
+                <th><i class="bi bi-percent"></i> Success Rate</th>
+                <th><i class="bi bi-bar-chart"></i> Performance</th>
+              </tr>
+            </thead>
+            <tbody>
+              {{#each personnelStats}}
+              <tr>
+                <td><strong>{{username}}</strong></td>
+                <td>{{total}}</td>
+                <td><span class="badge bg-success">{{delivered}}</span></td>
+                <td><span class="badge bg-info">{{inProgress}}</span></td>
+                <td><span class="badge bg-warning">{{pending}}</span></td>
+                <td>
+                  {{#if total}}
+                    {{multiply (divide delivered total) 100}}%
+                  {{else}}
+                    N/A
+                  {{/if}}
+                </td>
+                <td>
+                  <div class="progress" style="height: 20px;">
+                    {{#if total}}
+                      <div class="progress-bar bg-success" style="width: {{multiply (divide delivered total) 100}}%">{{delivered}}</div>
+                      <div class="progress-bar bg-info" style="width: {{multiply (divide inProgress total) 100}}%">{{inProgress}}</div>
+                      <div class="progress-bar bg-warning" style="width: {{multiply (divide pending total) 100}}%">{{pending}}</div>
+                    {{else}}
+                      <div class="progress-bar bg-secondary" style="width: 100%">No deliveries</div>
+                    {{/if}}
+                  </div>
+                </td>
+              </tr>
+              {{else}}
+              <tr>
+                <td colspan="7" class="text-center">No personnel data available</td>
+              </tr>
+              {{/each}}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-header">
+        <h5><i class="bi bi-clock-history"></i> Recent Deliveries</h5>
+      </div>
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th><i class="bi bi-hash"></i> ID</th>
+                <th><i class="bi bi-card-text"></i> Description</th>
+                <th><i class="bi bi-person"></i> Customer</th>
+                <th><i class="bi bi-person-check"></i> Assigned To</th>
+                <th><i class="bi bi-exclamation-triangle"></i> Priority</th>
+                <th><i class="bi bi-flag"></i> Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              {{#each recentDeliveries}}
+              <tr>
+                <td>{{id}}</td>
+                <td>{{description}}</td>
+                <td>{{customerName}}</td>
+                <td>{{assignedTo}}</td>
+                <td><span class="badge priority-{{priority}}">{{priority}}</span></td>
+                <td><span class="badge status-{{status}}">{{status}}</span></td>
+              </tr>
+              {{else}}
+              <tr>
+                <td colspan="6" class="text-center">No recent deliveries</td>
+              </tr>
+              {{/each}}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

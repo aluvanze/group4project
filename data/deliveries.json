@@ -2,19 +2,73 @@
   {
     "id": 1,
     "description": "baby clothes",
+    "customerName": "Sarah Johnson",
+    "customerPhone": "+254 712 345 678",
+    "address": "123 Westlands Avenue, Nairobi",
+    "priority": "Medium",
     "assignedTo": "chesinenlinet@gmail.com",
-    "status": "Delivered"
+    "status": "Delivered",
+    "createdAt": "2025-10-26T10:30:00.000Z",
+    "updatedAt": "2025-10-27T14:20:00.000Z"
   },
   {
     "id": 2,
     "description": "books",
+    "customerName": "John Mwangi",
+    "customerPhone": "+254 723 456 789",
+    "address": "45 Kilimani Road, Nairobi",
+    "priority": "Low",
     "assignedTo": "chesinenlinet@gmail.com",
-    "status": "Pending"
+    "status": "Pending",
+    "createdAt": "2025-10-27T08:15:00.000Z",
+    "updatedAt": "2025-10-27T08:15:00.000Z"
   },
   {
     "id": 3,
     "description": "beds",
+    "customerName": "Mary Wanjiku",
+    "customerPhone": "+254 734 567 890",
+    "address": "78 Karen Shopping Centre, Karen",
+    "priority": "High",
     "assignedTo": "aluvanze1",
-    "status": "Delivered"
+    "status": "Delivered",
+    "createdAt": "2025-10-25T12:00:00.000Z",
+    "updatedAt": "2025-10-27T16:45:00.000Z"
+  },
+  {
+    "id": 4,
+    "description": "Electronics - Laptop",
+    "customerName": "Peter Kimani",
+    "customerPhone": "+254 745 678 901",
+    "address": "12 Parklands Estate, Nairobi",
+    "priority": "Urgent",
+    "assignedTo": "punton@gmail.com",
+    "status": "In Progress",
+    "createdAt": "2025-10-28T09:00:00.000Z",
+    "updatedAt": "2025-10-28T10:30:00.000Z"
+  },
+  {
+    "id": 5,
+    "description": "Groceries",
+    "customerName": "Jane Akinyi",
+    "customerPhone": "+254 756 789 012",
+    "address": "56 Lavington Green, Nairobi",
+    "priority": "Medium",
+    "assignedTo": "mary@gmail.com",
+    "status": "Pending",
+    "createdAt": "2025-10-28T11:20:00.000Z",
+    "updatedAt": "2025-10-28T11:20:00.000Z"
+  },
+  {
+    "id": 6,
+    "description": "Furniture - Dining Table",
+    "customerName": "David Omondi",
+    "customerPhone": "+254 767 890 123",
+    "address": "34 Runda Estate, Nairobi",
+    "priority": "High",
+    "assignedTo": "aluvanze1",
+    "status": "In Progress",
+    "createdAt": "2025-10-27T15:30:00.000Z",
+    "updatedAt": "2025-10-28T08:00:00.000Z"
   }
 ]

@@ -1,26 +1,85 @@
-<h2><i class="bi bi-truck"></i> Welcome, {{user.username}} (Delivery Personnel)</h2>
+<div class="dashboard-header">
+  <h2><i class="bi bi-truck"></i> Welcome, {{user.username}} (Delivery Personnel)</h2>
+</div>
 
-<table class="table table-striped">
-  <thead>
-    <tr><th><i class="bi bi-hash"></i> ID</th><th><i class="bi bi-card-text"></i> Description</th><th><i class="bi bi-flag"></i> Status</th><th><i class="bi bi-gear"></i> Update</th></tr>
-  </thead>
-  <tbody>
-    {{#each deliveries}}
-    <tr>
-      <td>{{id}}</td>
-      <td>{{description}}</td>
-      <td>{{status}}</td>
-      <td>
-        <form action="/personnel/update/{{id}}" method="POST">
-          <select name="status" class="form-select">
-            <option>Pending</option>
-            <option>In Progress</option>
-            <option>Delivered</option>
-          </select>
-          <button class="btn btn-sm btn-success mt-1"><i class="bi bi-check-circle"></i> Update</button>
-        </form>
-      </td>
-    </tr>
-    {{/each}}
-  </tbody>
-</table>
+<div class="stats-cards">
+  <div class="stat-card">
+    <div class="stat-icon bg-primary"><i class="bi bi-box-seam"></i></div>
+    <div class="stat-info">
+      <h3>{{deliveries.length}}</h3>
+      <p>My Deliveries</p>
+    </div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-icon bg-warning"><i class="bi bi-clock"></i></div>
+    <div class="stat-info">
+      <h3>{{#with (filterByStatus deliveries "Pending")}}{{this.length}}{{/with}}</h3>
+      <p>Pending</p>
+    </div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-icon bg-info"><i class="bi bi-hourglass-split"></i></div>
+    <div class="stat-info">
+      <h3>{{#with (filterByStatus deliveries "In Progress")}}{{this.length}}{{/with}}</h3>
+      <p>In Progress</p>
+    </div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-icon bg-success"><i class="bi bi-check-circle"></i></div>
+    <div class="stat-info">
+      <h3>{{#with (filterByStatus deliveries "Delivered")}}{{this.length}}{{/with}}</h3>
+      <p>Delivered</p>
+    </div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header">
+    <h4><i class="bi bi-list-ul"></i> My Assigned Deliveries</h4>
+  </div>
+  <div class="card-body">
+    <div class="table-responsive">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th><i class="bi bi-hash"></i> ID</th>
+            <th><i class="bi bi-card-text"></i> Description</th>
+            <th><i class="bi bi-person"></i> Customer</th>
+            <th><i class="bi bi-telephone"></i> Phone</th>
+            <th><i class="bi bi-geo-alt"></i> Address</th>
+            <th><i class="bi bi-exclamation-triangle"></i> Priority</th>
+            <th><i class="bi bi-flag"></i> Status</th>
+            <th><i class="bi bi-gear"></i> Update Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each deliveries}}
+          <tr>
+            <td>{{id}}</td>
+            <td>{{description}}</td>
+            <td>{{customerName}}</td>
+            <td>{{customerPhone}}</td>
+            <td>{{address}}</td>
+            <td><span class="badge priority-{{priority}}">{{priority}}</span></td>
+            <td><span class="badge status-{{status}}">{{status}}</span></td>
+            <td>
+              <form action="/personnel/update/{{id}}" method="POST">
+                <select name="status" class="form-control mb-2">
+                  <option value="Pending" {{#if (eq status "Pending")}}selected{{/if}}>Pending</option>
+                  <option value="In Progress" {{#if (eq status "In Progress")}}selected{{/if}}>In Progress</option>
+                  <option value="Delivered" {{#if (eq status "Delivered")}}selected{{/if}}>Delivered</option>
+                </select>
+                <button class="btn btn-sm btn-success w-100"><i class="bi bi-check-circle"></i> Update</button>
+              </form>
+            </td>
+          </tr>
+          {{else}}
+          <tr>
+            <td colspan="8" class="text-center">No deliveries assigned to you</td>
+          </tr>
+          {{/each}}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

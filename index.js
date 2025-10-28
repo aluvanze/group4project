@@ -23,7 +23,7 @@ app.use(
   })
 );
 
-// Handlebars setup
+// Handlebars setup with helpers
 app.engine(
   "hbs",
   exphbs.engine({
@@ -31,6 +31,14 @@ app.engine(
     defaultLayout: "main",
     layoutsDir: path.join(__dirname, "views", "layouts"),
     partialsDir: path.join(__dirname, "views", "partials"),
+    helpers: {
+      eq: (a, b) => a === b,
+      filterByStatus: (array, status) => array.filter(item => item.status === status),
+      filterByRole: (array, role) => array.filter(item => item.role === role),
+      add: (a, b) => a + b,
+      divide: (a, b) => b !== 0 ? (a / b).toFixed(2) : 0,
+      multiply: (a, b) => (a * b).toFixed(0),
+    }
   })
 );
 app.set("view engine", "hbs");
